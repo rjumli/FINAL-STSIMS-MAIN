@@ -107,11 +107,11 @@
     <!-- <Course :school_id="campus.id" :courses="courses" ref="course"/> -->
 </template>
 <script>
-// import SimpleBar from 'simplebar-vue';
+import SimpleBar from 'simplebar-vue';
 // import Course from './Course.vue';
 import Count from './Count.vue';
 export default {
-    components: { Count },
+    components: { Count, SimpleBar },
     props: ['school','courses'],
     data(){
         return {

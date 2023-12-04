@@ -2111,13 +2111,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var simplebar_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! simplebar-vue */ "./node_modules/simplebar-vue/dist/simplebar-vue.esm.js");
 /* harmony import */ var _Count_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Count.vue */ "./resources/js/Pages/Modules/Schools/Profile/Modals/Count.vue");
-// import SimpleBar from 'simplebar-vue';
+
 // import Course from './Course.vue';
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Count: _Count_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Count: _Count_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    SimpleBar: simplebar_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: ['school', 'courses'],
   data: function data() {
