@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('01101011 01110010 01100001 01100100')->group(function(){
-        Route::get('/location/{type}', [App\Http\Controllers\ListController::class, 'api_location']);
+        Route::get('/locations/{type}', [App\Http\Controllers\ApiController::class, 'locations']);
+        Route::get('/schools/{type}', [App\Http\Controllers\ApiController::class, 'schools']);
+        Route::get('/lists/{type}', [App\Http\Controllers\ApiController::class, 'lists']);
         Route::prefix('scholars')->group(function(){
             Route::get('/{code}', [App\Http\Controllers\ScholarController::class, '/']);
             Route::post('/', [App\Http\Controllers\ScholarController::class, 'store']);

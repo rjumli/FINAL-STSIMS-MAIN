@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SchoolCampus;
 use Illuminate\Http\Request;
 use App\Services\SchoolService;
 use App\Traits\HandlesTransaction;
@@ -60,5 +61,18 @@ class SchoolController extends Controller
             'school' => $school,
             'main' => $main
         ]);
+    }
+
+    public function api($type){
+        if($type == 'count'){
+            $array = [
+                'in_region' => SchoolCampus::count(),
+                'out_region' => SchoolCampus::count(),
+            ];
+            return $array;
+        }else{
+            $data = School::with('campuses','campuses.courses')->get();
+            return $data;
+        }
     }
 }

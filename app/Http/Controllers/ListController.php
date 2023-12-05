@@ -84,20 +84,30 @@ class ListController extends Controller
 
     public function api_location($type)
     {   
-        switch($type){
-            case 'regions' :
-                $data = LocationRegion::get();
-            break;
-            case 'provinces' :
-                $data = LocationProvince::get();
-            break;
-            case 'municipalities' :
-                $data = LocationMunicipality::get();
-            break;
-            case 'barangays' :
-                $data = LocationBarangay::get();
-            break;
+        if($type == 'count'){
+            $array = [
+                'regions' => LocationRegion::count(),
+                'provinces' => LocationProvince::count(),
+                'municipalities' => LocationMunicipality::count(),
+                'barangays' => LocationBarangay::count()
+            ];
+            return $array;
+        }else{
+            switch($type){
+                case 'regions' :
+                    $data = LocationRegion::get();
+                break;
+                case 'provinces' :
+                    $data = LocationProvince::get();
+                break;
+                case 'municipalities' :
+                    $data = LocationMunicipality::get();
+                break;
+                case 'barangays' :
+                    $data = LocationBarangay::get();
+                break;
+            }
+            return $data;
         }
-        return $data;
     }
 }
