@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+Route::get('/user', [App\Http\Controllers\ApiController::class, 'user']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('01101011 01110010 01100001 01100100')->group(function(){
+        
         Route::get('/locations/{type}', [App\Http\Controllers\ApiController::class, 'locations']);
         Route::get('/schools/{type}', [App\Http\Controllers\ApiController::class, 'schools']);
         Route::get('/lists/{type}', [App\Http\Controllers\ApiController::class, 'lists']);

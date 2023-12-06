@@ -8,6 +8,7 @@ use App\Models\ListPrivilege;
 use App\Models\ListProgram;
 use App\Models\ListStatus;
 use App\Models\ListCourse;
+use App\Models\School;
 use App\Models\SchoolCampus;
 use App\Models\LocationRegion;
 use App\Models\LocationProvince;
@@ -79,6 +80,38 @@ class ApiController extends Controller
                 'Statuses' => ListStatus::count()
             ];
             return $array;
+        }else{
+            switch($type){
+                case 'agencies' :
+                    $data = ListAgency::get();
+                break;
+                case 'courses' :
+                    $data = ListCourse::get();
+                break;
+                case 'programs' :
+                    $data = ListProgram::get();
+                break;
+                case 'privileges' :
+                    $data = ListPrivilege::get();
+                break;
+                case 'dropdowns' :
+                    $data = ListDropdown::get();
+                break;
+                case 'statuses' :
+                    $data = ListStatus::get();
+                break;
+            }
+            return $data;
+        }
+    }
+
+    public function user(Request $request){
+        $bearer = $request->bearerToken();
+        $token = PersonalAccessToken::findToken($bearer);
+        if($token){
+            return response()->json(['status' => true], 200);
+        }else{
+            return response()->json(['status' => 'Unauthorized'], 401);
         }
     }
 }
