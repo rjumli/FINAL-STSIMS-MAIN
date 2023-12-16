@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/schools/{type}', [App\Http\Controllers\ApiController::class, 'schools']);
         Route::get('/lists/{type}', [App\Http\Controllers\ApiController::class, 'lists']);
         Route::prefix('scholars')->group(function(){
-            Route::get('/{code}', [App\Http\Controllers\ScholarController::class, '/']);
+            Route::get('/{code}', [App\Http\Controllers\ApiController::class, 'scholars']);
             Route::post('/', [App\Http\Controllers\ScholarController::class, 'store']);
         });
     });

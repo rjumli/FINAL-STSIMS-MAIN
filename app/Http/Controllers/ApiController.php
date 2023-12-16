@@ -8,6 +8,7 @@ use App\Models\ListPrivilege;
 use App\Models\ListProgram;
 use App\Models\ListStatus;
 use App\Models\ListCourse;
+use App\Models\Scholar;
 use App\Models\School;
 use App\Models\SchoolCampus;
 use App\Models\LocationRegion;
@@ -113,5 +114,20 @@ class ApiController extends Controller
         }else{
             return response()->json(['status' => 'Unauthorized'], 401);
         }
+    }
+
+    public function scholars(Request $request){
+        $bearer = $request->bearerToken();
+        $token = PersonalAccessToken::findToken($bearer);
+        $region = $token->tokenable->profile->agency->region_code;
+       
+        $data = Scholar::with('address')->with('education')->with('profile')
+        ->whereHas('education',function ($query) use ($region) {
+            $query->whereHas('school',function ($query) use ($region) {
+                $query->where('assigned_region',$region); 
+            });
+        })
+        ->get();
+        return $data;
     }
 }
