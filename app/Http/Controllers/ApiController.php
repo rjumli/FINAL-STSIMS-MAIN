@@ -101,9 +101,19 @@ class ApiController extends Controller
                 case 'statuses' :
                     $data = ListStatus::get();
                 break;
+                case 'settings' :
+                    return $this->settings($request);
+                break;
             }
             return $data;
         }
+    }
+
+    public function settings($request){
+        $bearer = $request->bearerToken();
+        $token = PersonalAccessToken::findToken($bearer);
+        $agency = $token->tokenable->profile->agency->id;
+        return $agency;
     }
 
     public function user(Request $request){
